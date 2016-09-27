@@ -5,7 +5,9 @@ clock() {
 }
 
 volume() {
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
+    amixer get Master|grep Mono |sed 's/[^f]//g' > /home/js/.config/lemonbar/mutefile
+    python /home/js/.config/lemonbar/mute.py
+    amixer get Headphone | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
 }
 
 cpu_usage() {
@@ -19,11 +21,16 @@ ram_usage() {
     python /home/js/.config/lemonbar/rampercentage.py
 }
 
+network() {
+    iw dev wlp0s20u9 link |grep --color=never onnected > /home/js/.config/lemonbar/netfile
+    python /home/js/.config/lemonbar/netstatus.py
+}
+
 song() {
     mpc |grep - 
 }
 
 while true; do
-    echo "%{B#424242}%{F#00BFA5}%{c} VOL: $(volume)%   |   CPU: $(cpu_usage)%   |   RAM: $(ram_usage)   |   $(song) %{r}$(clock)     "
+    echo "%{B#424242}%{F#00BFA5}%{l}   $(network)   |   CPU: $(cpu_usage)%   |   RAM: $(ram_usage)   |   VOL: $(volume)% %{c}$(song) %{r}$(clock)     "
     sleep 1
 done
