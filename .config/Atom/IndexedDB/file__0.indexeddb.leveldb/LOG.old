@@ -1,0 +1,6 @@
+2016/09/25-19:52:35.510 22385 Reusing MANIFEST /home/js/.config/Atom/IndexedDB/file__0.indexeddb.leveldb/MANIFEST-000001
+2016/09/25-19:52:35.510 22385 Recovering log #3
+2016/09/25-19:52:35.514 22385 Reusing old log /home/js/.config/Atom/IndexedDB/file__0.indexeddb.leveldb/000003.log 
+2016/09/25-20:05:33.450 25510 Level-0 table #5: started
+2016/09/25-20:05:33.552 25510 Level-0 table #5: 1667560 bytes OK
+2016/09/25-20:05:33.593 25510 Delete type=0 #3
