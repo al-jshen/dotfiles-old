@@ -1,8 +1,8 @@
 URxvt.font: xft: Source Code Pro:size=14
 URxvt.scrollBar: 0
-URxvt.background: #263238
+URxvt.background: #262626
 URxvt.foreground: #EEEEEE
-URxvt.transparent: 1
+!URxvt.transparent: 1
 URxvt.shading: 30
 
 

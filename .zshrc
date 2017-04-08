@@ -78,6 +78,9 @@ export LANG=en_CA.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# workaround for vmware startup
+export VMWARE_USE_SHIPPED_LIBS='yes'
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -92,7 +95,7 @@ alias gc='git clone'
 alias gp='git push -u origin master'
 alias gs='git status'
 alias ga='git add --all'
-alias jeks='bundle exec jekyll serve'
 alias msf="msfconsole --quiet -x \"db_connect postgres@msf\""
 alias pw='cat /etc/passwords |grep'
+PS1=' %{$fg[green]%}js (%~) =>%{$reset_color%} $(git_prompt_info)'
 cd ~

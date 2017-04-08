@@ -104,21 +104,24 @@ bindsym Mod1+backslash exec i3lock
 bindsym Print exec "scrot '%Y-%m-%d_%T-screenshot.png' -q 100 -e 'mv $f ~/files/screenshots/'"
 
 # audio controls
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- && amixer -q sset Headphone,0 1-"
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ && amixer -q sset Headphone,0 1+"
-bindsym XF86AudioMute exec "amixer sset Master toggle && amixer sset Headphone toggle"
+#bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1-"
+#bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+"
+#bindsym XF86AudioMute exec "amixer sset Master toggle"
+bindsym XF86AudioLowerVolume exec "pamixer -d 1"
+bindsym XF86AudioRaiseVolume exec "pamixer -i 1"
+bindsym XF86AudioMute exec "pamixer -t"
 bindsym XF86AudioPlay exec "mpc toggle"
 bindsym XF86AudioStop exec "mpc repeat && mpc single"
 bindsym XF86AudioPrev exec "mpc prev"
 bindsym XF86AudioNext exec "mpc next"
 
 # workspace names
-set $workspace1 "One"
-set $workspace2 "Two"
+# set $workspace1 "One"
+# set $workspace2 "Two"
 
 # switch to workspace
-bindsym Mod1+1 workspace $workspace1
-bindsym Mod1+2 workspace $workspace2
+bindsym Mod1+1 workspace 1
+bindsym Mod1+2 workspace 2
 bindsym Mod1+3 workspace 3
 bindsym Mod1+4 workspace 4
 bindsym Mod1+5 workspace 5
@@ -129,8 +132,8 @@ bindsym Mod1+9 workspace 9
 bindsym Mod1+0 workspace 10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace $workspace1
-bindsym Mod1+Shift+2 move container to workspace $workspace2
+bindsym Mod1+Shift+1 move container to workspace 1
+bindsym Mod1+Shift+2 move container to workspace 2
 bindsym Mod1+Shift+3 move container to workspace 3
 bindsym Mod1+Shift+4 move container to workspace 4
 bindsym Mod1+Shift+5 move container to workspace 5
@@ -190,7 +193,7 @@ set $white #FFFFFF
 
 # programs
 bindsym Mod1+d exec rofi -show run -lines 10 -eh 2  -width 100 -fullscreen -padding 485 -font "Oxygen 14"
-bindsym Mod1+q exec firefox
+bindsym Mod1+q exec google-chrome-stable
 bindsym Mod1+b exec brave
 
 # window colours
@@ -230,7 +233,7 @@ client.unfocused        $bg     $bg        $inactive
 # startup programs
 exec_always feh --bg-scale /home/js/files/pictures/wp8.jpg
 exec xrdb .Xresources
-exec wpa_supplicant -B -i wlp0s20u9 -c /etc/wpa_supplicant/example.conf
+#exec wpa_supplicant -B -i wlp0s20u9 -c /etc/wpa_supplicant/example.conf
 exec ~/.config/lemonbar/lemonbar.sh | lemonbar -p -f 'Oxygen:style=Regular:size=14'
 exec mpd
 exec compton --config ~/.config/compton.conf -b
