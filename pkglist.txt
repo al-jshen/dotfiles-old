@@ -17,7 +17,7 @@ brave
 btscanner
 bzip2
 compton
-conky
+conky-cli
 coreutils
 cower
 cpupower
@@ -38,7 +38,7 @@ feh
 file
 filesystem
 findutils
-firefox
+fish
 flashplugin
 flex
 font-mathematica
@@ -50,6 +50,7 @@ ghex
 git
 gksu
 glibc
+google-chrome
 grep
 groff
 grub
@@ -66,6 +67,7 @@ iproute2
 iputils
 iw
 jfsutils
+jq
 lemonbar-xft-git
 less
 libplist
@@ -74,6 +76,7 @@ licenses
 linux
 linux-headers
 logrotate
+lsdesktopf
 lsof
 lvm2
 lxappearance
@@ -85,6 +88,7 @@ markdown
 mdadm
 metasploit
 min
+minecraft
 mlocate
 mpc
 mpd
@@ -99,6 +103,7 @@ opencl-mesa
 openssh
 pacaur
 pacman
+pamixer
 parted
 patch
 pavucontrol
@@ -153,6 +158,7 @@ usbmuxd
 usbutils
 util-linux
 vi
+vmware-patch
 wavemon
 weechat
 which
@@ -239,4 +245,5 @@ xterm
 zathura
 zathura-djvu
 zathura-pdf-mupdf
+zoom
 zsh
