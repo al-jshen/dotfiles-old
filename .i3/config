@@ -104,9 +104,6 @@ bindsym Mod1+backslash exec i3lock
 bindsym Print exec "scrot '%Y-%m-%d_%T-screenshot.png' -q 100 -e 'mv $f ~/files/screenshots/'"
 
 # audio controls
-#bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1-"
-#bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+"
-#bindsym XF86AudioMute exec "amixer sset Master toggle"
 bindsym XF86AudioLowerVolume exec "pamixer -d 1"
 bindsym XF86AudioRaiseVolume exec "pamixer -i 1"
 bindsym XF86AudioMute exec "pamixer -t"
@@ -114,6 +111,9 @@ bindsym XF86AudioPlay exec "mpc toggle"
 bindsym XF86AudioStop exec "mpc repeat && mpc single"
 bindsym XF86AudioPrev exec "mpc prev"
 bindsym XF86AudioNext exec "mpc next"
+
+#speaker/headphone output toggle
+bindcode 78 exec --no-startup-id /home/js/files/programs/bash/soundToggle.sh
 
 # workspace names
 # set $workspace1 "One"
