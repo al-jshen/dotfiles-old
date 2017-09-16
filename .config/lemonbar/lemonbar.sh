@@ -1,29 +1,50 @@
 #!/bin/sh
 
 clock() {
-    date '+%A  |  %B %d, %Y  |  %X'
+    date '+%A, %B %d, %Y  |  %X'
 }
 
 volume() {
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
+    pamixer --get-volume
 }
 
-cpu_usage() {
-    USAGE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
-    bc <<< $USAGE
+audioOut() {
+    /home/js/.config/lemonbar/audioOut.sh
 }
 
-ram_usage() {
-    screenfetch -nN |grep --color=never RAM > /home/js/.config/lemonbar/ramfile
-    sed 's/[^0-9/ ]*//g' /home/js/.config/lemonbar/ramfile > /home/js/.config/lemonbar/ramin
-    python /home/js/.config/lemonbar/rampercentage.py
+network() {
+    /home/js/.config/lemonbar/network.sh
+}
+
+temps() {
+    /home/js/.config/lemonbar/temps.sh
+}
+
+vpn() {
+    /home/js/.config/lemonbar/vpn.sh
 }
 
 song() {
-    mpc |grep - 
+#    mpc current |cut -d " " -f3-20
+    playerctl metadata xesam:artist; printf ": "; playerctl metadata xesam:title
+}
+
+repeat() {
+    mpc |grep repeat > /home/js/.config/lemonbar/repeat
+    python2 /home/js/.config/lemonbar/repeat.py
+}
+
+ethprice() {
+    cat /home/js/.config/lemonbar/cryptoprice/ethprice
+}
+
+btcprice() {
+    cat /home/js/.config/lemonbar/cryptoprice/btcprice
 }
 
 while true; do
-    echo "%{B#424242}%{F#00BFA5}%{c} VOL: $(volume)%   |   CPU: $(cpu_usage)%   |   RAM: $(ram_usage)   |   $(song) %{r}$(clock)     "
+#    echo "%{B#262626}%{F#C4C4C4}%{l}   $(network) %{F#20C20E}$(vpn)%{F#C4C4C4}| VOL: $(volume)% $(audioOut) %{c}%{F#3ECAE8}$(song) $(repeat) %{r}%{F#E84A5F} $(temps)%{F#C4C4C4} | $(clock)   "
+    echo "%{B#262626}%{F#800000}%{l}   $(network) %{F#20C20E}$(vpn)%{F#800000}| VOL: $(volume)% $(audioOut) %{c}%{F#3ECAE8}$(song) $(repeat) %{r}%{F#E84A5F} $(temps)%{F#800000} | $(clock)   "
     sleep 1
 done
+

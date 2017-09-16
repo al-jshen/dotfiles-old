@@ -3,6 +3,9 @@
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/js/.oh-my-zsh
+  
+# Path for Ruby and Rubygems
+export PATH=/home/js/.gem/ruby/2.4.0/bin:$PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -75,6 +78,14 @@ export LANG=en_CA.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# workaround for vmware startup
+export VMWARE_USE_SHIPPED_LIBS='yes'
+
+# exports
+export VISUAL=vim
+export EDITOR="$VISUAL"
+LD_LIBRARY_PATH=/usr/lib/libboost_thread.so.1.63.0
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -83,6 +94,23 @@ export LANG=en_CA.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias wific='sudo wpa_supplicant -B -i wlp0s20u9 -c /etc/wpa_supplicant/example.conf'
+alias wific='sudo wpa_supplicant -B -i net0 -c /etc/wpa_supplicant/example.conf'
 alias mp='ncmpcpp'
 alias gc='git clone'
+alias gp='git push -u origin master'
+alias gs='git status'
+alias ga='git add --all'
+alias msf="msfconsole --quiet -x \"db_connect postgres@msf\""
+alias pw='cat /etc/passwords |grep'
+alias xev='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
+alias vmfix='sudo vmware-modconfig --console --install-all'
+alias vpn='~/files/programs/bash/vpn.sh'
+alias sss='scrot -s'
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+alias v='vim'
+alias rmd='recordmydesktop --device pulse --v_bitrate 2000000'
+alias extip='curl ipinfo.io/ip'
+alias rmorphans='sudo pacman -Rns $(pacman -Qtdq)'
+alias temps='/home/js/files/programs/bash/tempToggle.sh'
+PS1=' %{$fg[green]%}js (%~) =>%{$reset_color%} $(git_prompt_info)'
+cd ~
