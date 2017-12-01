@@ -81,14 +81,11 @@ export LANG=en_CA.UTF-8
 # workaround for vmware startup
 export VMWARE_USE_SHIPPED_LIBS='yes'
 
-<<<<<<< HEAD
 # exports
-export VISUAL=vim
+export VISUAL=nano
 export EDITOR="$VISUAL"
 LD_LIBRARY_PATH=/usr/lib/libboost_thread.so.1.63.0
 
-=======
->>>>>>> fee013187a8bc0019b170b8c66dc37a06e3c23c2
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -105,18 +102,37 @@ alias gs='git status'
 alias ga='git add --all'
 alias msf="msfconsole --quiet -x \"db_connect postgres@msf\""
 alias pw='cat /etc/passwords |grep'
-<<<<<<< HEAD
 alias xev='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
 alias vmfix='sudo vmware-modconfig --console --install-all'
-alias vpn='~/files/programs/bash/vpn.sh'
+alias vpn='~/files/programs/scripts/vpn.sh'
 alias sss='scrot -s'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 alias v='vim'
 alias rmd='recordmydesktop --device pulse --v_bitrate 2000000'
 alias extip='curl ipinfo.io/ip'
 alias rmorphans='sudo pacman -Rns $(pacman -Qtdq)'
-alias temps='/home/js/files/programs/bash/tempToggle.sh'
-=======
->>>>>>> fee013187a8bc0019b170b8c66dc37a06e3c23c2
+alias temps='/home/js/files/programs/scripts/tempToggle.sh'
+alias crypto='/home/js/files/programs/scripts/cryptoToggle.sh'
+alias ddos='/home/js/files/programs/scripts/ddos.sh'
+alias xclip='xclip -selection c'
+alias pid='while read c1 c2 c3; do echo $c2; done'
+alias ytdl='youtube-dl -x --audio-quality 0 -o '\''%(title)s.%(ext)s'\'' --audio-format mp3'
+alias suspend='systemctl suspend'
+
+#functions
+kl() {
+	kill $(ps -aux |grep $1 |pid) > /dev/null 2>&1
+}
+
+imgstack() {
+	align_image_stack -m -a UNIQ *.$1 &&
+	convert UNIQ* -evaluate-sequence median median.jpgx
+	convert UNIQ* -evaluate-sequence mean mean.jpgx
+	if [$2 == 'del']; then
+		rm *.jpg
+	fi
+	mv *.jpgx *.jpg
+}
+
 PS1=' %{$fg[green]%}js (%~) =>%{$reset_color%} $(git_prompt_info)'
 cd ~
