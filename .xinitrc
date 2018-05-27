@@ -49,5 +49,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xset r rate 175 35
-wific
 exec i3
