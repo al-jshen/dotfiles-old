@@ -1,0 +1,42 @@
+Installation Guide for Arch Linux
+
+cfdisk and partition properly
+	for dual boot, gpt with a swap and a /
+	for virtual machine, dos with swap, /boot, and /
+mkfs
+connect to internet
+	wpa_supplicant -B -i <interface name> -c <(wpa_passphrase <network name> <network password>)
+	dhcpcd
+change mirrorlist
+mount filesystems
+pacstrap /mnt base base-devel
+pacman -Syu
+genfstab -p /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/America/Vancouver /etc/localetime
+hwclock --systohc
+pacman -S ntp
+systemctl start ntpd
+systemctl enable ntpd
+uncomment en_US.UTF-8 in /etc/locale.gen
+locale-gen
+echo archlinux > /etc/hostname
+passwd root
+pacman -S git zsh
+useradd -m -g users -G wheel -s /usr/bin/zsh <username>
+passwd <username>
+mkinitcpio -p linux
+install grub
+configure grub
+enable testing repo in /etc/pacman.conf
+install wpa_supplicant, dialog, iw, termite, i3-gaps, xorg, xorg-xinit, xorg-xmodmap, xorg-xset, pulseaudio, alsa-utils, pavucontrol, python2, python3, python-pip
+reboot
+bring network interface up
+wpa_supplicant connect to internet
+start and enable dhcpcd
+install aurman with git clone
+install lemonbar-xft-git, google-chrome
+clone dotfiles and copy everything out
+install vim plugins
+install youcompleteme
+
