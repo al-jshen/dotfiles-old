@@ -199,8 +199,6 @@ set $white #FFFFFF
 # programs
 bindsym Mod1+d exec rofi -show run -lines 10 -eh 2  -width 100 -fullscreen -padding 485 -font "Noto Sans 14"
 bindsym Mod1+q exec google-chrome-stable
-# bindsym Mod1+q exec firefox-nightly
-bindsym Mod1+a exec /home/js/builds/servo/mach run -b -w --pref dom.mozbrowser.enabled --pref gfx.webrender.enabled http://localhost:6060
 
 # window colours
 # class                 border  background text
@@ -240,7 +238,6 @@ client.unfocused        $bg     $bg        $inactive
 exec_always feh --bg-scale /home/js/files/pictures/wallpapers/wp6.jpg
 exec xrdb .Xresources
 exec  ~/.config/lemonbar/lemonbar.sh | lemonbar -g x30++ -p -f 'Source Code Pro:style=Regular:size=13'
-exec ~/.config/lemonbar/price.sh
 exec compton --config ~/.config/compton.conf -b
 exec xset r rate 175 30
 exec xmodmap ~/.config/keyswap
