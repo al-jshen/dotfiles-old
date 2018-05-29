@@ -9,36 +9,38 @@ volume() {
 }
 
 audioOut() {
-    /home/js/.config/lemonbar/audioOut.sh
+	muteStat=$(pamixer --get-mute)
+	output=$(pacmd list-sinks |grep active)
+	if [[ $muteStat == *"t"* ]]; then
+		echo \(Muted\)
+	elif [[ $output == *"headphones"* ]]; then
+		echo \(Headphones\)
+	elif [[ $output == *"lineout"* ]]; then
+		echo \(Speakers\)
+	fi
 }
 
 network() {
-    /home/js/.config/lemonbar/network.sh
-}
+	connStat=$(iw dev net0 link |head -n 1)
+	netAddr=$(ip addr |grep 192.168 |cut -c10-22)
+	ESSID=$(iw dev net0 link |head -n2 |tail -n1 |cut -c8-)
+	if [[ $connStat == *"Not"* ]]; then
+		echo Not Connected
+	else
+		echo $ESSID @ $netAddr
+	fi
 
-temps() {
-    /home/js/.config/lemonbar/temps.sh
 }
 
 vpn() {
-    /home/js/.config/lemonbar/vpn.sh
-}
-
-song() {
-#    mpc current |cut -d " " -f3-20
-    CN=$(playerctl metadata xesam:artist)
-    if [[ $CN ]]; then
-        playerctl metadata xesam:artist; printf ": "; playerctl metadata xesam:title
-    fi
-}
-
-repeat() {
-    mpc |grep repeat > /home/js/.config/lemonbar/repeat
-    python2 /home/js/.config/lemonbar/repeat.py
+	netCheck=$(ifconfig |grep tun)
+	if [[ $netCheck ]]; then
+		echo "(VPN) "
+	fi
 }
 
 while true; do
-    echo "%{B#262626}%{F#C4C4C4}%{l}   $(network) %{F#20C20E} $(vpn)%{F#C4C4C4}| VOL: $(volume)% $(audioOut) %{c}%{F#3ECAE8}$(song) $(repeat) %{r}%{F#E84A5F} $(temps)%{F#C4C4C4} | $(clock)   "
+    echo "%{B#262626}%{F#C4C4C4}%{l}   $(network) %{F#20C20E} $(vpn)%{F#C4C4C4}| VOL: $(volume)% $(audioOut) %{r} $(clock)   "
     sleep 1
 done
 
