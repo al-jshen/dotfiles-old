@@ -35,7 +35,7 @@ set $right semicolon
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec urxvt
+bindsym Mod1+Return exec termite
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -183,7 +183,7 @@ bindsym Mod1+r mode "resize"
 
 # gaps
 gaps inner 25
-gaps outer 80
+gaps outer 50
 
 # no borders
 new_window none
@@ -234,15 +234,14 @@ client.unfocused        $bg     $bg        $inactive
 #######################################################################
 #exec i3-config-wizard
 
+# resolution
+exec ~/files/programs/scripts/screen.sh
+
 # startup programs
-exec_always feh --bg-scale /home/js/files/pictures/wallpapers/wp6.jpg
+exec_always feh --bg-scale /home/js/.config/wallpapers/4.jpg
 exec xrdb .Xresources
 exec  ~/.config/lemonbar/lemonbar.sh | lemonbar -g x30++ -p -f 'Source Code Pro:style=Regular:size=13'
 exec compton --config ~/.config/compton.conf -b
-exec xset r rate 175 30
 exec xmodmap ~/.config/keyswap
-
-# resolution
-exec xrandr --output HDMI-0 --mode 2560x1440 
-
+exec restart
 

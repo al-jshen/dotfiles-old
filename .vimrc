@@ -48,3 +48,7 @@ inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
+
+" Don't wrap lines
+set formatoptions-=t
+set nowrap

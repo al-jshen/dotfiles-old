@@ -75,14 +75,11 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# workaround for vmware startup
-export VMWARE_USE_SHIPPED_LIBS='yes'
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -100,6 +97,7 @@ alias extip='curl ipinfo.io/ip'
 alias rmorphans='sudo pacman -Rns $(pacman -Qtdq)'
 alias xclip='xclip -selection c'
 alias pid='while read c1 c2 c3; do echo $c2; done'
+alias mpv='mpv --sub-scale=0.5'
 alias suspend='systemctl suspend'
 
 #functions
@@ -107,5 +105,6 @@ kl() {
 	kill $(ps -aux |grep $1 |pid) > /dev/null 2>&1
 }
 
+stty -ixon
 PS1=' %{$fg[green]%}js (%~) =>%{$reset_color%} $(git_prompt_info)'
 cd ~

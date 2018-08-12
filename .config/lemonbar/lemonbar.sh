@@ -33,7 +33,7 @@ network() {
 }
 
 vpn() {
-	netCheck=$(ifconfig |grep tun)
+	netCheck=$(ip addr |grep tun)
 	if [[ $netCheck ]]; then
 		echo "(VPN) "
 	fi

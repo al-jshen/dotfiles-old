@@ -48,4 +48,7 @@ color20 = #a59f85
 color21 = #f5f4f1
 
 [options]
-font = Source Code Pro 13
+font = Hack 13
+clickable_url = true
+dynamic_title = true
+
