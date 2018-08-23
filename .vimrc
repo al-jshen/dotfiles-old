@@ -21,6 +21,7 @@ au BufNewFile,BufRead *.py
 set encoding=utf-8
 
 " Completion Customizations
+let g:ycm_python_binary_path = '/usr/local/bin/python3' " set to python3
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_semantic_triggers = {
